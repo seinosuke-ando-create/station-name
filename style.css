@@ -4,7 +4,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
 }
 
 .quiz-container {
@@ -39,7 +39,7 @@ h1 {
 
 #result {
   margin-top: 15px;
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: bold;
 }
 

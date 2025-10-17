@@ -53,7 +53,7 @@ function displayQuestion() {
   currentQuestion = getRandomQuestion();
   const options = generateOptions(currentQuestion);
 
-  questionElement.innerHTML = `<p>正解はどの駅？</p><img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width: 300px; margin: 20px auto; display: block;">`;
+  questionElement.innerHTML = `<p>正解はどの駅？</p><img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width: 200px; margin: 20px auto; display: block;">`;
   optionsElement.innerHTML = "";
 
   options.forEach(option => {
