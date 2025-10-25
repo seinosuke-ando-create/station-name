@@ -57,3 +57,41 @@ h1 {
 #next-btn:hover {
   background-color: #004d40;
 }
+
+#back-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+#back-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.line-buttons {
+  display: flex;
+  flex-wrap: wrap;       /* 折り返しを有効にする */
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.line-buttons button {
+  flex: 0 0 30%;         /* 横幅を約3分の1に設定 */
+  max-width: 120px;      /* 必要に応じてボタン最大幅を設定 */
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.line-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+
+
