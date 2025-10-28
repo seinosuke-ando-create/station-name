@@ -352,4 +352,3 @@ function displayQuestion() {
     optionsElement.appendChild(button);
   });
 }
-
