@@ -4,10 +4,10 @@
   padding: 30px 40px;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  text-align: center; /* 中央揃え */
+  text-align: center;
   width: 400px;
   max-width: 90%;
-  margin: 50px auto; /* 中央配置 */
+  margin: 50px auto;
 }
 
 /* ===== 問題文と画像 ===== */
@@ -20,9 +20,9 @@
 /* ===== 選択肢（縦並び） ===== */
 .options {
   display: flex;
-  flex-direction: column; /* 縦配置 */
-  align-items: center; /* 中央揃え */
-  gap: 15px; /* 選択肢間の余白 */
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
   margin-bottom: 20px;
 }
 
@@ -37,12 +37,18 @@
   background-color: #f9f9f9;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .options button:hover {
   background-color: #e0f7fa;
   border-color: #00acc1;
   transform: translateY(-2px);
+}
+
+.options button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== 正解・不正解の結果表示 ===== */
@@ -52,49 +58,22 @@
   margin: 20px 0;
 }
 
-/* ===== 「次の問題へ」ボタン ===== */
-#next-btn {
-  display: inline-block;
-  padding: 15px 40px;
-  font-size: 18px;
-  font-weight: bold;
-  background-color: #17a2b8;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-#next-btn:hover {
-  background-color: #138496;
-  transform: translateY(-3px);
-}
-.options button {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-.options button:active {
-  transform: translateY(1px);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
 /* ===== 路線選択画面 ===== */
 .select-container {
   text-align: center;
   margin: 40px auto;
-  max-width: 600px; /* 画面幅を制限 */
+  max-width: 600px;
 }
 
 .line-buttons {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 15px; /* ボタン間の余白 */
+  gap: 15px;
   justify-items: center;
   margin-top: 30px;
 }
 
-/* 各路線ボタンのデザイン */
+/* 各路線ボタン */
 .line-buttons button {
   background-color: white;
   border: 2px solid #ccc;
@@ -111,11 +90,56 @@
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* 画像サイズを統一（画面に収まるよう縮小） */
+/* 路線画像サイズを統一 */
 .line-buttons img {
-  width: 60px;     /* 画像の幅を固定 */
+  width: 60px;
   height: auto;
   max-width: 100%;
   object-fit: contain;
   margin-bottom: 5px;
+}
+
+/* ===== ボタンエリア（横並び） ===== */
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+}
+
+/* ===== 共通ボタンデザイン ===== */
+#next-btn,
+#back-btn {
+  flex: 1;
+  max-width: 160px;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 「次の問題へ」ボタン（青） */
+#next-btn {
+  background-color: #17a2b8;
+  color: white;
+}
+
+#next-btn:hover {
+  background-color: #138496;
+  transform: translateY(-3px);
+}
+
+/* 「路線選択に戻る」ボタン（グレー） */
+#back-btn {
+  background-color: #b0b0b0;
+  color: white;
+}
+
+#back-btn:hover {
+  background-color: #8f8f8f;
+  transform: translateY(-3px);
 }
