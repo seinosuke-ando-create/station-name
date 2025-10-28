@@ -264,7 +264,7 @@ function displayQuestion() {
   const options = generateOptions(currentQuestion);
 
   questionElement.innerHTML = `
-    <p>正解はどの駅？</p>
+    <p>正しい駅名を選択してください。</p>
     <img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width: 200px; margin: 20px auto; display: block;">
   `;
   optionsElement.innerHTML = "";
@@ -340,7 +340,7 @@ function displayQuestion() {
   const options = generateOptions(currentQuestion);
 
   questionElement.innerHTML = `
-    <p>正解はどの駅？</p>
+    <p>正しい駅名を選択してください。</p>
     <img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width: 200px; margin: 20px auto; display: block;">
   `;
   optionsElement.innerHTML = "";
