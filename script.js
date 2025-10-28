@@ -277,19 +277,29 @@ function displayQuestion() {
   });
 }
 
-function checkAnswer(selected) {
+function checkAnswer(selectedAnswer) {
+  const correctAnswer = currentQuestion.name;
+  const buttons = document.querySelectorAll("#options button");
+
+  // ボタンを無効化して再クリック防止
+  buttons.forEach(btn => btn.disabled = true);
+
+  // 正解ボタンに青、選択した不正解ボタンに赤
+  buttons.forEach(btn => {
+    if (btn.textContent === correctAnswer) {
+      btn.classList.add("correct");   // 青背景＋青枠＋白文字
+    }
+    if (btn.textContent === selectedAnswer && selectedAnswer !== correctAnswer) {
+      btn.classList.add("incorrect"); // 赤背景＋赤枠＋白文字
+    }
+  });
+
+  // 結果テキストは非表示（視覚のみで伝える）
   const resultElement = document.getElementById("result");
-  const nextButton = document.getElementById("next-btn");
+  resultElement.textContent = "";
 
-  if (selected === currentQuestion.name) {
-    resultElement.textContent = "◯ 正解！";
-    resultElement.style.color = "green";
-  } else {
-    resultElement.textContent = `× 不正解！正解は ${currentQuestion.name}`;
-    resultElement.style.color = "red";
-  }
-
-  nextButton.style.display = "inline-block";
+  // 「次の問題へ」ボタンを表示
+  document.getElementById("next-btn").style.display = "inline-block";
 }
 
 document.getElementById("next-btn").addEventListener("click", displayQuestion);

@@ -148,6 +148,23 @@
   margin-bottom: 4px;
 }
 
+/* ===== 正解・不正解ボタンの強調表示 ===== */
+.correct {
+  background-color: rgba(33, 150, 243, 0.8) !important; /* 青背景 透明度80% */
+  border: 3px solid #1976d2 !important;                /* 青枠 */
+  color: #ffffff !important;                            /* 白文字 */
+  font-weight: bold;                                    /* 太字 */
+  z-index: 1;                                          /* 文字を前面に表示 */
+}
+
+.incorrect {
+  background-color: rgba(244, 67, 54, 0.8) !important;  /* 赤背景 透明度80% */
+  border: 3px solid #d32f2f !important;               /* 赤枠 */
+  color: #ffffff !important;                            /* 白文字 */
+  font-weight: bold;                                    /* 太字 */
+  z-index: 1;                                          /* 文字を前面に表示 */
+}
+
 /* ===== スマホ向け最適化 ===== */
 @media (max-width: 600px) {
   .quiz-container {
