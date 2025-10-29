@@ -227,7 +227,7 @@ document.querySelectorAll(".line-buttons button").forEach(button => {
     document.getElementById("select-container").style.display = "none";
     document.getElementById("quiz-container").style.display = "block";
     document.getElementById("lineTitle").textContent =
-      `メトロ駅名クイズ ‑ ${getLineName(selected)}`;
+      `クイズ ~${getLineName(selected)}~`;
 
     displayQuestion();
   });
@@ -256,30 +256,26 @@ function checkAnswer(selectedAnswer) {
   const resultElement = document.getElementById("result");
   const instruction = document.getElementById("instruction");
 
-  // 回答後はガイド文を消す
-  instruction.textContent = "";
+  // 出題時のガイドを非表示に
+  instruction.style.display = "none";
 
   // 全ボタンを無効化
   buttons.forEach(btn => btn.disabled = true);
 
   let isCorrect = false;
   buttons.forEach(btn => {
-    if (btn.textContent === correctAnswer) {
-      btn.classList.add("correct");
-    }
-    if (btn.textContent === selectedAnswer && selectedAnswer !== correctAnswer) {
+    if (btn.textContent === correctAnswer) btn.classList.add("correct");
+    if (btn.textContent === selectedAnswer && selectedAnswer !== correctAnswer)
       btn.classList.add("incorrect");
-    }
-    if (btn.textContent === selectedAnswer && selectedAnswer === correctAnswer) {
+    if (btn.textContent === selectedAnswer && selectedAnswer === correctAnswer)
       isCorrect = true;
-    }
   });
 
-  // 判定文を表示
+  // 判定文の表示（空白を作らず上部にだけ表示）
+  resultElement.style.display = "block";
   resultElement.textContent = isCorrect ? "正解！" : "不正解…";
   resultElement.className = isCorrect ? "result-correct" : "result-incorrect";
 
-  // 次へボタンを表示
   document.getElementById("next-btn").style.display = "inline-block";
 }
 
@@ -319,31 +315,31 @@ function displayQuestion() {
   const questionElement = document.getElementById("question");
   const optionsElement = document.getElementById("options");
   const resultElement = document.getElementById("result");
+  const instruction = document.getElementById("instruction");
   const nextButton = document.getElementById("next-btn");
 
+  // 初期化（空白防止）
   resultElement.textContent = "";
+  resultElement.style.display = "none";
+  instruction.style.display = "block";
+  instruction.textContent = "正しい駅名を１つ選択してください";
   nextButton.style.display = "none";
-
-  // 戻るボタンを常に表示
-  backButton.style.display = "inline-block";
-
-  const instruction = document.getElementById("instruction");
-  instruction.textContent = "以下の４つの選択肢から１つ選択してください";
-  instruction.className = "instruction-text";
 
   currentQuestion = getRandomQuestion();
   const options = generateOptions(currentQuestion);
 
   questionElement.innerHTML = `
-    <p>正しい駅名を選択してください。</p>
-    <img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width: 200px; margin: 20px auto; display: block;">
+    <img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width:200px; margin:20px auto; display:block;">
   `;
-  optionsElement.innerHTML = "";
 
+  optionsElement.innerHTML = "";
   options.forEach(option => {
     const button = document.createElement("button");
     button.textContent = option;
     button.onclick = () => checkAnswer(option);
     optionsElement.appendChild(button);
   });
+
+  // 戻るボタンは常に表示
+  document.getElementById("back-btn").style.display = "inline-block";
 }

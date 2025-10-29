@@ -231,9 +231,10 @@
 .instruction-text {
   text-align: center;
   color: #333;
-  font-size: 16px;
+  font-size: 20px;
   margin-bottom: 15px;
   animation: fadeIn 0.4s ease-in;
+  min-height: 28px; /* 高さを固定して動かないように */
 }
 
 @keyframes fadeIn {
@@ -245,4 +246,16 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+#instruction,
+#result {
+  display: none;
+  text-align: center;
+  margin: 10px 0;
+}
+
+#instruction.active,
+#result.active {
+  display: block;
 }
