@@ -165,6 +165,38 @@
   z-index: 1;                                          /* 文字を前面に表示 */
 }
 
+#result {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 10px 0 20px 0;
+  min-height: 28px; /* 高さを固定して動かないように */
+}
+
+/* 正解時のテキスト */
+.result-correct {
+  color: #1976d2; /* 青 */
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* 不正解時のテキスト */
+.result-incorrect {
+  color: #d32f2f; /* 赤 */
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* アニメーション（ふわっと表示） */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* ===== スマホ向け最適化 ===== */
 @media (max-width: 600px) {
   .quiz-container {
@@ -193,5 +225,24 @@
     flex-direction: row;
     gap: 10px;
     margin-top: 10px;
+  }
+}
+
+.instruction-text {
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  margin-bottom: 15px;
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

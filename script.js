@@ -250,55 +250,36 @@ function generateOptions(correctStation) {
   return options.sort(() => Math.random() - 0.5);
 }
 
-// ===== クイズ処理 =====
-function displayQuestion() {
-  const questionElement = document.getElementById("question");
-  const optionsElement = document.getElementById("options");
-  const resultElement = document.getElementById("result");
-  const nextButton = document.getElementById("next-btn");
-
-  resultElement.textContent = "";
-  nextButton.style.display = "none";
-
-  currentQuestion = getRandomQuestion();
-  const options = generateOptions(currentQuestion);
-
-  questionElement.innerHTML = `
-    <p>正しい駅名を選択してください。</p>
-    <img src="picture/${currentQuestion.no}.png" alt="駅番号" style="max-width: 200px; margin: 20px auto; display: block;">
-  `;
-  optionsElement.innerHTML = "";
-
-  options.forEach(option => {
-    const button = document.createElement("button");
-    button.textContent = option;
-    button.onclick = () => checkAnswer(option);
-    optionsElement.appendChild(button);
-  });
-}
-
 function checkAnswer(selectedAnswer) {
   const correctAnswer = currentQuestion.name;
   const buttons = document.querySelectorAll("#options button");
+  const resultElement = document.getElementById("result");
+  const instruction = document.getElementById("instruction");
 
-  // ボタンを無効化して再クリック防止
+  // 回答後はガイド文を消す
+  instruction.textContent = "";
+
+  // 全ボタンを無効化
   buttons.forEach(btn => btn.disabled = true);
 
-  // 正解ボタンに青、選択した不正解ボタンに赤
+  let isCorrect = false;
   buttons.forEach(btn => {
     if (btn.textContent === correctAnswer) {
-      btn.classList.add("correct");   // 青背景＋青枠＋白文字
+      btn.classList.add("correct");
     }
     if (btn.textContent === selectedAnswer && selectedAnswer !== correctAnswer) {
-      btn.classList.add("incorrect"); // 赤背景＋赤枠＋白文字
+      btn.classList.add("incorrect");
+    }
+    if (btn.textContent === selectedAnswer && selectedAnswer === correctAnswer) {
+      isCorrect = true;
     }
   });
 
-  // 結果テキストは非表示（視覚のみで伝える）
-  const resultElement = document.getElementById("result");
-  resultElement.textContent = "";
+  // 判定文を表示
+  resultElement.textContent = isCorrect ? "正解！" : "不正解…";
+  resultElement.className = isCorrect ? "result-correct" : "result-incorrect";
 
-  // 「次の問題へ」ボタンを表示
+  // 次へボタンを表示
   document.getElementById("next-btn").style.display = "inline-block";
 }
 
@@ -345,6 +326,10 @@ function displayQuestion() {
 
   // 戻るボタンを常に表示
   backButton.style.display = "inline-block";
+
+  const instruction = document.getElementById("instruction");
+  instruction.textContent = "以下の４つの選択肢から１つ選択してください";
+  instruction.className = "instruction-text";
 
   currentQuestion = getRandomQuestion();
   const options = generateOptions(currentQuestion);
